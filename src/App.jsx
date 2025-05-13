@@ -1,70 +1,22 @@
-import { useContext, useState } from "react"
-import { ContextValues } from "./values/Spread"
-import { Routes, Route, useNavigate, Router, Link } from "react-router-dom";
-import {Login} from "./login/Login.jsx";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Home from "./Home.jsx";
+import LoginForm from "./login/LoginForm.jsx";
 
-function LoginForm(){
-  const startedValues = useContext(ContextValues);
-  const {username, email, password} = startedValues;
-  const [nameStart, setNameStart] = useState(username);
-  const [emailChange, setEmailChange] = useState(email);
-  const [passwordChange, setPasswordChange] = useState(password);
-  const navigate = useNavigate();
-
-  const usernameChange = (e) =>{
-    setNameStart(e.target.value);
-     }
-
-  const emailValues = (e) => {
-    setEmailChange(e.target.value);
-  }
-
-  const passwordValues = (e) => {
-    setPasswordChange(e.target.value);
-    }
-
-    const LoginButtonClick = () => {
-      navigate("/login",{state: nameStart, emailChange, passwordChange});
-    }
-
-  
-   
-  return(
-    <>
-    <form>
-      <label htmlFor="email1">Email</label>
-     <input type="text" value={emailChange} onChange={emailValues} />
-     <label>UserName</label> 
-     <input type="text" value={nameStart} onChange={usernameChange} /> 
-     <label>Password</label>
-     <input type="password" value={passwordChange} onChange={passwordValues} /> 
-     <button onClick={LoginButtonClick}>Login</button>
-    </form>
-   <h3>
-    {emailChange}
-    </h3>
-   <h3>
-    {nameStart}
-    </h3>
-   <h3>
-    {passwordChange}
-    </h3>
-    </>
-  )
-}
 
 function App() {
-  <Router>
-    <Link to="login">Login</Link>
-    <Link to="/">Home</Link>
-  </Router>
-   
+  /**
+   * When using react-router-dom, it is best to reserve the App function for the Routes only.
+   * This is because the App function is the main entry point of your application and we don't want to clutter it with other components.
+   * Instead, we can create a separate component for the routes and use it in the App function.
+   * This will make the code more organized and easier to read.
+   * If you add the LoginForm as you did before, it becomes tricky to render it in the App function.
+   */
   return (
     <>
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<LoginForm />} />
-    </Routes>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<LoginForm />} />
+      </Routes>
     </>
   )
 }

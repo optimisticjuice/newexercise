@@ -1,8 +1,5 @@
 export const values = {
-    email : "",
-     username : "",
-     password : "",
-     
-
-    }
- 
+    email: "",
+    username: "",
+    password: ""
+}
